@@ -94,9 +94,8 @@ const printPoints = () => {
     h2Points.textContent = points === 1 || points === -1 ? `${points} Punto` : `${points} Puntos`;
 }
 
-// Función para comprobar las cartas seleccionadas, se le pasa el  comprueba si la clase no es la found suma uno al contador, y aparte comprueba si el contador es menor a 3 le da la vuelta a la carta y le pone la imagen del array de cartas
+// Función para comprobar las cartas seleccionadas, se le pasa el div de cada carta y el dato de la carta, esta comprueba si la clase no es la found suma uno al contador, y aparte comprueba si el contador es menor a 3 le da la vuelta a la carta y le pone la imagen del div, aparte la función comprueba si el contador es igual a uno crea un objeto carta pasandole el div y los datos de la carta y de igual forma comprueba si el contador es igual a dos hace lo mismo con la otra carta y este llama a la función checkcard para comprobar si las dos cartas son iguales.
 const selectCard = (divCard, dataCard) => {
-    console.log(divCard);
     if (!divCard.classList.contains("found")) {
         count++
         if (count < 3) {
@@ -178,7 +177,7 @@ const printFinishGame = () => {
     sectionGame.innerHTML = `
     <h2>Lo conseguiste tu puntación ha sido de ${points} puntos</h2>
     <div class = "finish">
-        <img src = /finish.png>
+        <img src = public/assets/finish.png>
     </div>
     
     `

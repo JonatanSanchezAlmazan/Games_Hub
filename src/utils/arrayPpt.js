@@ -1,13 +1,13 @@
 export let arrayPpt = [{
         name: "piedra",
-        img: "/piedra.png"
+        img: "/public/assets/piedra.png"
     },
     {
         name: "papel",
-        img: "/papel.png"
+        img: "/public/assets/papel.png"
     },
     {
         name: "tijera",
-        img: "/tijera.png"
+        img: "/public/assets/tijera.png"
     },
 ]
