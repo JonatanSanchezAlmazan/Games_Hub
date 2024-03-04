@@ -1,0 +1,78 @@
+.containPpt {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--gh--gap--l);
+    padding: var(--gh--padding--l);
+}
+
+.gamePpt {
+    width: 100%;
+    height: 30svh;
+    display: flex;
+    justify-content: space-evenly;
+    gap: var(--gh--gap--m);
+    background-image: url("/bgPpt.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.gamePpt>img {
+    border-radius: 100px;
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+}
+
+@media (min-width: 740px) {
+    .gamePpt>img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+.result {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--gh--padding--s);
+    text-align: center;
+    gap: var(--gh--gap--l);
+    flex-wrap: wrap;
+    border-radius: 20px;
+    margin-top: var(--gh--margin--l);
+}
+
+@media (min-width:900px) {
+    .result {
+        width: 850px;
+    }
+}
+
+.vs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--gh--gap--m);
+}
+
+.vs>img {
+    border-radius: 100px;
+    width: 70px;
+    height: 70px;
+}
+
+@media (min-width: 740px) {
+    .vs>img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+.rotatedImage {
+    transition: transform 1s;
+}

@@ -1,0 +1,36 @@
+.main {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--gh--gap--xl);
+    margin: var(--gh--margin--xxl) 0;
+}
+
+.cardGame {
+    max-width: 430px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--gh--gap--l);
+    border: 3px solid var(--gh--colorBorder);
+    border-radius: 20px;
+    padding: var(--gh--padding--m);
+    box-shadow: 5px 3px 14px 0px rgba(0, 0, 0, 0.8);
+    -webkit-box-shadow: 5px 3px 14px 0px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: 5px 3px 14px 0px rgba(0, 0, 0, 0.8);
+    transition: all 0.5s;
+}
+
+.cardGame:hover {
+    transform: scale(1.1);
+}
+
+.cardGame>img {
+    width: 100%;
+    object-fit: contain;
+}

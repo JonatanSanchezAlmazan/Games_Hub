@@ -1,0 +1,8 @@
+.header {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: var(--gh--gap--m);
+    padding: var(--gh--padding--l);
+}
