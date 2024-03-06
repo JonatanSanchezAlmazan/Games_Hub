@@ -13,7 +13,7 @@
     display: flex;
     justify-content: space-evenly;
     gap: var(--gh--gap--m);
-    background-image: url("/public/assets/bgPpt.png");
+    background-image: url("/assets/bgPpt.png");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;

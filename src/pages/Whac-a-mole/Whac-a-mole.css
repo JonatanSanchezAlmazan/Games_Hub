@@ -24,7 +24,7 @@
     justify-items: center;
     gap: var(--gh--gap--s);
     margin-top: var(--gh--margin--xxl);
-    background-image: url("/public/assets/bgWhac.png");
+    background-image: url("/assets/bgWhac.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;

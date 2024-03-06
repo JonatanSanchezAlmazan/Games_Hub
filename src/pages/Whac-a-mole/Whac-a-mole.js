@@ -60,7 +60,7 @@ const createBoardMole = (array) => {
         const divImg = document.createElement("div");
         divImg.classList.add("divImg");
         const img = document.createElement("img");
-        img.src = "/public/assets/hole.webp";
+        img.src = "/assets/hole.webp";
         img.id = i;
         divImg.appendChild(img);
         sectionGame.appendChild(divImg);
@@ -111,7 +111,7 @@ const gameLoop = () => {
         previousRandom = random;
         image = arrayImages[randomRepeat];
 
-        image.src = "/public/assets/mole.webp";
+        image.src = "/assets/mole.webp";
 
         image.addEventListener("click", () => checkReverseImage(image));
 
@@ -142,7 +142,7 @@ const checkReverseImage = (image) => {
         const img = image.src.split("/").slice(-1).join("");
         if (img === "mole.webp") {
             count++
-            image.src = "/public/assets/hole.webp";
+            image.src = "/assets/hole.webp";
             renderSumPoints(count);
         }
     }
@@ -222,7 +222,7 @@ const gameOver = (points) => {
     sectionGameOver.innerHTML = `
     <div class = "gameOver">
             <h3>Game Over has conseguido ${points} puntos</h3>  
-            <img src = "/public/assets/moleGameOver.webp">             
+            <img src = "/assets/moleGameOver.webp">             
     </div>`
     removeBtn(btnStartGame);
     removeBtn(btnPaused);

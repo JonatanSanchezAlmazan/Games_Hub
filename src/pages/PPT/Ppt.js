@@ -73,7 +73,7 @@ const optionUser = () => {
                 btnEmptyGame.disabled = false;
                 sectionResult.innerHTML = `
                 <div class = vs>
-                    <img src = /public/assets/${img.src.split("/").splice(-1).join("")}>
+                    <img src = /assets/${img.src.split("/").splice(-1).join("")}>
                     <p>VS</p>
                 </div>
                 
@@ -135,7 +135,7 @@ const initGame = () => {
 
     } else {
         const image = document.createElement("img");
-        image.src = `/public/assets/${optionComputer}.png`;
+        image.src = `/assets/${optionComputer}.png`;
         image.classList.add("rotatedImage");
         divVs.appendChild(image);
         image.offsetWidth;

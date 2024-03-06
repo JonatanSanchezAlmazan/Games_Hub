@@ -177,7 +177,7 @@ const printFinishGame = () => {
     sectionGame.innerHTML = `
     <h2>Lo conseguiste tu puntación ha sido de ${points} puntos</h2>
     <div class = "finish">
-        <img src = public/assets/finish.png>
+        <img src = /assets/finish.png>
     </div>
     
     `
