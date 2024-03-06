@@ -11,7 +11,7 @@ export const arrayGames = [{
     {
         name: "Memory Game",
         img: "/public/assets/bgMemory.webp",
-        description: "Trata de golpear los topos cuando vayan saliendo de sus madrigueras!! El juego empieza con una complejidad simple pero a medida que vas consiguiendo puntos los topos van apareciendo más seguidos, serás capaz de ganar muchos puntos? Adelante entra y no te lo pierdas."
+        description: "Trata de encontrar todas las parejas de los personajes de la patrulla canina para poder completar el juego."
     },
 
 

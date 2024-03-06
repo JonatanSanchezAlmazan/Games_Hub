@@ -123,7 +123,7 @@ const selectCard = (divCard, dataCard) => {
     }
 }
 
-// Función para pintar el array de cartas
+// Función para pintar el array de cartas, selecciona la sección gameMemory y la limpía y también le quita el backgroundImage y el height que tiene por defecto, recorre el array y crea un div por cada carta, le añade la clase card y el mismo div tiene un escuchador de eventos que cuando le hacen click llama a la función selectCard.
 const printCards = (array) => {
     const sectionGame = document.querySelector(".gameMemory");
     sectionGame.innerHTML = "";

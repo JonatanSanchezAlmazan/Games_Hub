@@ -4,6 +4,7 @@ import { renderWhac } from '../../pages/Whac-a-mole/Whac-a-mole';
 import { CreateButtons } from '../Buttons/Buttons';
 import './Header.css'
 
+// Función para crear el Header.
 export const Header = () => {
     const header = document.querySelector(".header");
     const btnGuac = CreateButtons("original-button", "Whac-a-mole", "mole");

@@ -1,10 +1,13 @@
 import { CreateButtons, disableBtn } from '../../components/Buttons/Buttons';
 import { arrayPpt } from '../../utils/arrayPpt';
 import './Ppt.css'
+
+// Variables de apoyo
 let count = 0;
 let points = 0;
 let userOption = null;
 
+// Función encargada de renderizar el juego de piedra papel o tijera.
 export const renderPpt = () => {
     points = 0;
     const main = document.querySelector(".main");
@@ -41,6 +44,7 @@ export const renderPpt = () => {
     disableBtn(btnMole, false);
 }
 
+// Función encargada de renderizar la sección del resultado y renderizar las tres opciones o piedra o papel o tijera, esta función llama a la función optionUser.
 const printPpt = () => {
     const sectionGame = document.querySelector(".gamePpt");
     const sectionResult = document.querySelector(".result");
@@ -58,6 +62,7 @@ const printPpt = () => {
     optionUser();
 }
 
+// Función encargada de de renderizar la opción del usuario.
 const optionUser = () => {
     const gamePpt = document.querySelector(".gamePpt").querySelectorAll("img");
     const btnEmptyGame = document.querySelector("#empty");
@@ -68,11 +73,12 @@ const optionUser = () => {
                 btnEmptyGame.disabled = false;
                 sectionResult.innerHTML = `
                 <div class = vs>
-                    <img src = /${img.src.split("/").splice(-1).join("")}>
+                    <img src = /public/assets/${img.src.split("/").splice(-1).join("")}>
                     <p>VS</p>
                 </div>
                 
                 `
+
                 userOption = img.src.split("/").splice(-1).join("").split(".")[0];
                 count++;
             }
@@ -81,12 +87,14 @@ const optionUser = () => {
 
 }
 
+// Función encargada de coger una opción random del array de piedra papel o tijera y retornar el nombre.
 const optionPc = () => {
     const random = Math.floor(Math.random() * arrayPpt.length);
     const name = arrayPpt[random].name;
     return name;
 }
 
+// Función encargada de comparar para ver quien es el ganador si el usuario o el pc.
 const winner = (optionUser, optionPc) => {
     const h2Points = document.querySelector("h2");
     if (optionUser === optionPc) {
@@ -112,13 +120,13 @@ const winner = (optionUser, optionPc) => {
 
 };
 
+// Función encargada de inicializar el juego
 const initGame = () => {
     const sectionResult = document.querySelector(".result");
     const btnStartGame = document.querySelector(".btnStart");
     const divVs = document.querySelector(".vs");
     const gamePpt = document.querySelector(".gamePpt");
     gamePpt.innerHTML = "";
-    printPpt();
     let p = document.createElement("p");
     const optionComputer = optionPc();
     if (divVs === null) {
@@ -127,7 +135,7 @@ const initGame = () => {
 
     } else {
         const image = document.createElement("img");
-        image.src = `/${optionComputer}.png`;
+        image.src = `/public/assets/${optionComputer}.png`;
         image.classList.add("rotatedImage");
         divVs.appendChild(image);
         image.offsetWidth;
@@ -141,9 +149,6 @@ const initGame = () => {
             count = 0;
             disableBtn(btnStartGame, true);
         }, 2000);
-
     }
-
     sectionResult.appendChild(p);
-
 }

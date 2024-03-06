@@ -2,6 +2,7 @@ import { CreateButtons, disableBtn, removeBtn } from '../../components/Buttons/B
 import { arrayMole } from '../../utils/arrayMoles';
 import './Whac-a-mole.css'
 
+//  Variables de apoyo.
 let interval;
 let moleCount;
 let count = 0;
@@ -9,6 +10,7 @@ let arrayImages;
 let timeInterval;
 let isPaused = false;
 
+// Función encragada de renderizar el juego Whac-a-mole.
 export const renderWhac = () => {
     count = 0;
     const main = document.querySelector(".main");
@@ -29,7 +31,12 @@ export const renderWhac = () => {
     const btnResetGame = CreateButtons("btnReset", "Reset Game");
     const btnMole = document.querySelector("#mole");
     const btnPpt = document.querySelector("#ppt");
-    btnStartGame.addEventListener("click", () => startGame());
+    btnStartGame.addEventListener("click", () => {
+        if (!document.querySelector(".game").hasChildNodes()) {
+            createBoardMole(arrayMole);
+        }
+        startGame()
+    });
     btnPausedGame.addEventListener("click", () => pausedGame());
     btnResetGame.addEventListener("click", () => resetGame());
     sectionBtn.appendChild(btnStartGame);
@@ -43,15 +50,17 @@ export const renderWhac = () => {
     main.appendChild(sectionContain);
     disableBtn(btnMole, true);
     disableBtn(btnPpt, false);
+
 }
 
-const createArrayMole = (array) => {
+// Función encargada de crear el tablero del juego, coge la sección game que le llega por parámetro un array y lo recorre con un bicle for para crear un div por cada elemento creamos una imagen y le asignamos el src del array de moles.
+const createBoardMole = (array) => {
     const sectionGame = document.querySelector(".game");
     for (let i = 0; i < array.length; i++) {
         const divImg = document.createElement("div");
         divImg.classList.add("divImg");
         const img = document.createElement("img");
-        img.src = "/hole.webp";
+        img.src = "/public/assets/hole.webp";
         img.id = i;
         divImg.appendChild(img);
         sectionGame.appendChild(divImg);
@@ -59,6 +68,8 @@ const createArrayMole = (array) => {
     }
     return sectionGame;
 }
+
+// Función encargada de actualizar el tiempo del intervalo del juego.
 const updateInterval = () => {
     if (count >= 10) {
         timeInterval = 1000;
@@ -85,6 +96,8 @@ const updateInterval = () => {
         timeInterval = 200;
     }
 }
+
+// Función encargada de crear un bucle para que el juego se repita, primero comprueba que el juego no este pausado, si es así crea un número random, también comprueba que el número siguiente no se el mismo al que ya había salido, y le añade a la imagen el src del topo, se le añade un escuchador de eventos a la imagen que esta llama a la función checkReverseImage pasandole la misma imagen a la que se le ha hecho clic, lo siguiente que comprueba es que no haya mas de 8 imagenes de topos en el tablero si fuera así limpiar el interval de tiempo y llama a la función gameOver y lo retorna para salir del bucle, de lo contrario llama a la función updateInterval para ver si tiene que continuar con ese intervalo de tiempo y actualizarlo.
 const gameLoop = () => {
     if (!isPaused) {
         let random = Math.floor(Math.random() * arrayImages.length);
@@ -98,7 +111,7 @@ const gameLoop = () => {
         previousRandom = random;
         image = arrayImages[randomRepeat];
 
-        image.src = "/mole.webp";
+        image.src = "/public/assets/mole.webp";
 
         image.addEventListener("click", () => checkReverseImage(image));
 
@@ -115,6 +128,7 @@ const gameLoop = () => {
     interval = setTimeout(gameLoop, timeInterval);
 }
 
+// Función encargada de iniciar el juego.
 const initGame = () => {
     arrayImages = document.querySelectorAll("img");
     timeInterval = 2000;
@@ -122,18 +136,20 @@ const initGame = () => {
 
 }
 
+// Función encargada de comprobar si la imagen donde clicas es de un topo y si es así suma puntos e vuelve a poner la imagen de la madriguera.
 const checkReverseImage = (image) => {
     if (!isPaused) {
         const img = image.src.split("/").slice(-1).join("");
         if (img === "mole.webp") {
             count++
-            image.src = "/hole.webp";
+            image.src = "/public/assets/hole.webp";
             renderSumPoints(count);
         }
     }
 
 }
 
+// Función encargada de contar de contar cuantos topos hay en el tablero.
 const countMoles = (arrayImages) => {
     let count = 0;
     for (let i = 0; i < arrayImages.length; i++) {
@@ -144,12 +160,14 @@ const countMoles = (arrayImages) => {
     return count;
 }
 
+// Función encargada de renderizar los puntos en el DOM.
 const renderSumPoints = (number) => {
     const points = document.querySelector("h2");
     points.innerHTML = number == 1 ? `${number} Punto ` : `${number} Puntos`;
 
 }
 
+// Función encragada de pausar el juego, esta coge el array de moles y le quita el escuchador de eventos a la imagen para que cuando el juego este en pausa no puedas clicar en las imagenes y se den la vuelta y sumen puntos.
 const pausedGame = () => {
     isPaused = true;
     if (arrayImages) {
@@ -166,8 +184,10 @@ const pausedGame = () => {
     sectionPaused.appendChild(p);
 
 
+
 }
 
+// Función encargada de resetear el juego.
 const resetGame = () => {
     const main = document.querySelector("main");
     main.innerHTML = "";
@@ -175,6 +195,7 @@ const resetGame = () => {
     renderWhac();
 }
 
+// Función encargada de inicializar el juego.
 const startGame = () => {
     const sectionGame = document.querySelector(".game");
     sectionGame.style.backgroundImage = "none";
@@ -185,11 +206,11 @@ const startGame = () => {
     const btnPaused = document.querySelector(".btnPaused");
     const sectionPaused = document.querySelector(".paused");
     sectionPaused.innerHTML = "";
-    disableBtn(btnPaused, false);
-    createArrayMole(arrayMole);
     initGame();
+    disableBtn(btnPaused, false);
 }
 
+// Función encragada de renderizar el game over
 const gameOver = (points) => {
     const main = document.querySelector("main");
     const sectionGame = document.querySelector(".game");
@@ -201,7 +222,7 @@ const gameOver = (points) => {
     sectionGameOver.innerHTML = `
     <div class = "gameOver">
             <h3>Game Over has conseguido ${points} puntos</h3>  
-            <img src = "/moleGameOver.webp">             
+            <img src = "/public/assets/moleGameOver.webp">             
     </div>`
     removeBtn(btnStartGame);
     removeBtn(btnPaused);
