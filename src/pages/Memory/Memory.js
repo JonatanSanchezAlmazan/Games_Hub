@@ -163,7 +163,6 @@ const checkFinishGame = () => {
         }
     })
     if (isFinish) {
-        console.log(isFinish);
         printFinishGame();
     }
 
