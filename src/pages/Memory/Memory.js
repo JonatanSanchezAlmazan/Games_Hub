@@ -73,7 +73,6 @@ const checkCard = () => {
         points++;
         printPoints();
         resetValue();
-        checkFinishGame();
     } else {
         points--;
         printPoints();
@@ -84,6 +83,7 @@ const checkCard = () => {
 
         }, 2000)
     }
+    checkFinishGame();
 
 
 }
@@ -156,16 +156,17 @@ const resetGame = () => {
 // Función encargada de comprobar si todas las cartas estan emparejadas, recorre todas las cartas y comprueba que tengan NO tengan la clase found para cambiarle el valor a false a la variable aisFinish, de lo contrario si todas las cartas tiene la clase found llama a la función printFinishGame.
 const checkFinishGame = () => {
     const allCards = document.querySelectorAll(".card");
-
+    isFinish = true;
     allCards.forEach(card => {
         if (!card.classList.contains("found")) {
             isFinish = false;
         }
     })
-
     if (isFinish) {
+        console.log(isFinish);
         printFinishGame();
     }
+
 }
 
 // Función para pintar el final del juego una vez todas las cartas estan emparejadas.
