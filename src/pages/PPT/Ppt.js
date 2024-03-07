@@ -7,6 +7,7 @@ let count = 0;
 let points = 0;
 let userOption = null;
 let isResult = false;
+let isEmpty = true;
 
 // Función encargada de renderizar el juego de piedra papel o tijera.
 export const renderPpt = () => {
@@ -36,7 +37,12 @@ export const renderPpt = () => {
         }
 
     });
-    btnEmptyGame.addEventListener("click", () => initGame());
+    btnEmptyGame.addEventListener("click", () => {
+        if (isEmpty) {
+            initGame();
+        }
+
+    });
     sectionPoints.appendChild(h2Points);
     sectionContain.appendChild(sectionBtn);
     sectionBtn.appendChild(btnStartGame);
@@ -72,6 +78,7 @@ const optionUser = () => {
     gamePpt.forEach((img) => {
         img.addEventListener("click", () => {
             if (count === 0) {
+                isEmpty = true;
                 btnEmptyGame.disabled = false;
                 sectionResult.innerHTML = `
                 <div class = vs>
@@ -123,6 +130,7 @@ const winner = (optionUser, optionPc) => {
 
 // Función encargada de inicializar el juego
 const initGame = () => {
+    
     const sectionResult = document.querySelector(".result");
     const btnStartGame = document.querySelector(".btnStart");
     const divVs = document.querySelector(".vs");
@@ -136,6 +144,7 @@ const initGame = () => {
         disableBtn(btnStartGame, true);
 
     } else {
+        isEmpty = false;
         const image = document.createElement("img");
         image.src = `/assets/${optionComputer}.png`;
         image.classList.add("rotatedImage");
@@ -145,6 +154,7 @@ const initGame = () => {
     }
     const optionUser = userOption;
     if (optionUser) {
+        
         setTimeout(() => {
             const result = winner(optionUser, optionComputer);
             p.textContent = `${result}`;

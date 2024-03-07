@@ -5,13 +5,12 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: var(--gh--gap--xl);
-    margin: var(--gh--margin--xxl) 0;
+    padding: var(--gh--padding--m);
 }
 
 .cardGame {
-    max-width: 430px;
-    height: 600px;
+    max-width: 330px;
+    height: 550px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -24,6 +23,7 @@
     -webkit-box-shadow: 5px 3px 14px 0px rgba(0, 0, 0, 0.8);
     -moz-box-shadow: 5px 3px 14px 0px rgba(0, 0, 0, 0.8);
     transition: all 0.5s;
+    margin: var(--gh--margin--m);
 }
 
 .cardGame:hover {

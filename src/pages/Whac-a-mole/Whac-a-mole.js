@@ -197,6 +197,10 @@ const resetGame = () => {
 
 // Función encargada de inicializar el juego.
 const startGame = () => {
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+    });
     const sectionGame = document.querySelector(".game");
     sectionGame.style.backgroundImage = "none";
     sectionGame.style.height = "auto";
