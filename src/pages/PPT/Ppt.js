@@ -6,6 +6,7 @@ import './Ppt.css'
 let count = 0;
 let points = 0;
 let userOption = null;
+let isResult = false;
 
 // Función encargada de renderizar el juego de piedra papel o tijera.
 export const renderPpt = () => {
@@ -29,7 +30,11 @@ export const renderPpt = () => {
     const btnEmptyGame = CreateButtons("btnStart", "Empty Game", "empty");
     btnStartGame.addEventListener("click", () => {
         disableBtn(btnStartGame, true);
-        printPpt()
+        if (!isResult) {
+            sectionContain.appendChild(sectionResult);
+            printPpt();
+        }
+
     });
     btnEmptyGame.addEventListener("click", () => initGame());
     sectionPoints.appendChild(h2Points);
@@ -38,7 +43,6 @@ export const renderPpt = () => {
     sectionBtn.appendChild(btnEmptyGame);
     sectionContain.appendChild(sectionPoints);
     sectionContain.appendChild(sectionGame);
-    sectionContain.appendChild(sectionResult);
     main.appendChild(sectionContain);
     disableBtn(btnPpt, true);
     disableBtn(btnMole, false);
@@ -52,12 +56,10 @@ const printPpt = () => {
     sectionGame.style.backgroundImage = "none";
     sectionGame.style.height = "auto";
     for (const key in arrayPpt) {
-        if (Object.hasOwnProperty.call(arrayPpt, key)) {
-            const element = arrayPpt[key];
-            const img = document.createElement("img");
-            img.src = element.img;
-            sectionGame.appendChild(img);
-        }
+        const element = arrayPpt[key];
+        const img = document.createElement("img");
+        img.src = element.img;
+        sectionGame.appendChild(img);
     }
     optionUser();
 }
@@ -78,7 +80,6 @@ const optionUser = () => {
                 </div>
                 
                 `
-
                 userOption = img.src.split("/").splice(-1).join("").split(".")[0];
                 count++;
             }
@@ -96,10 +97,10 @@ const optionPc = () => {
 
 // Función encargada de comparar para ver quien es el ganador si el usuario o el pc.
 const winner = (optionUser, optionPc) => {
-    const h2Points = document.querySelector("h2");
-    if (optionUser === optionPc) {
-        points = points;
-        h2Points.textContent = `${points} Puntos`;
+        const h2Points = document.querySelector("h2");
+        if (optionUser === optionPc) {
+            points = points;
+            h2Points.textContent = `${points === -1 || points === 1  ? `${points} Punto` : `${points} Puntos`}`;
         return "Empate";
 
     } else if (
@@ -108,13 +109,13 @@ const winner = (optionUser, optionPc) => {
         (optionUser === "tijera" && optionPc === "papel")
     ) {
         points++;
-        h2Points.textContent = `${points} Puntos`;
+        h2Points.textContent = `${points === -1 || points === 1  ? `${points} Punto` : `${points} Puntos`}`;
 
         return "Has Ganado!!!";
     } else {
 
         points--;
-        h2Points.textContent = `${points} Puntos`;
+        h2Points.textContent = `${points === -1 || points === 1  ? `${points} Punto` : `${points} Puntos`}`;
         return "Has perdido!!!";
     }
 
@@ -129,6 +130,7 @@ const initGame = () => {
     gamePpt.innerHTML = "";
     let p = document.createElement("p");
     const optionComputer = optionPc();
+    printPpt();
     if (divVs === null) {
         p.textContent = "Debes escoger una opción para poder jugar";
         disableBtn(btnStartGame, true);
