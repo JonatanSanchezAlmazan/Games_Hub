@@ -100,11 +100,11 @@ const selectCard = (divCard, dataCard) => {
         count++
         if (count < 3) {
             divCard.style.transform = "rotateY(180deg)";
-            divCard.style.transition = "transform 2s";
+            divCard.style.transition = "all 0.5s easy";
             setTimeout(() => {
                 divCard.style.backgroundColor = "#fff";
                 divCard.style.backgroundImage = `url(${dataCard.img})`;
-            }, 600);
+            }, 100);
         }
         if (count === 1) {
             card1 = {
